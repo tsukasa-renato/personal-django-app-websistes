@@ -13,7 +13,7 @@ class WebsiteTest(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.selenium = WebDriver('websites/tests/Webdriver/chromedriver')
+        cls.selenium = WebDriver('websites/tests/Webdriver/chromedriver')  # Change this line if using another browser
         cls.selenium.implicitly_wait(30)
 
     @classmethod
