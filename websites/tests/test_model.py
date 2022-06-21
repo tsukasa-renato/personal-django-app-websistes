@@ -75,11 +75,11 @@ class InitialDataTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.website = Websites.objects.create(url='url', title="_title")
-        cls.category = Categories.objects.create(websites=cls.website, title="_title")
-        cls.product = Products.objects.create(websites=cls.website, categories=cls.category, title="_title", price=1)
-        cls.group = Groups.objects.create(websites=cls.website, products=cls.product, title="_title")
-        cls.option = Options.objects.create(websites=cls.website, groups=cls.group, title="_title")
+        cls.website = Websites.objects.create(url='url', title="title")
+        cls.category = Categories.objects.create(websites=cls.website, title="title")
+        cls.product = Products.objects.create(websites=cls.website, categories=cls.category, title="title", price=1)
+        cls.group = Groups.objects.create(websites=cls.website, products=cls.product, title="title")
+        cls.option = Options.objects.create(websites=cls.website, groups=cls.group, title="title")
 
 
 class ProductsModelTest(InitialDataTest):
@@ -90,7 +90,7 @@ class ProductsModelTest(InitialDataTest):
         """
 
         with self.assertRaises(Exception):
-            Products.objects.create(websites=self.website, categories=self.category, title="_title", price=1)
+            Products.objects.create(websites=self.website, categories=self.category, title="title", price=1)
 
     def test_check_price_type_invalid_values(self):
         """
@@ -140,7 +140,7 @@ class ProductsModelTest(InitialDataTest):
                                 price_type='3')
 
         self.assertQuerysetEqual(Products.objects.all().order_by('pk'),
-                                 ['<Products: _title>', '<Products: price-type-1>', '<Products: price-type-2>',
+                                 ['<Products: title>', '<Products: price-type-1>', '<Products: price-type-2>',
                                   '<Products: price-type-3>'])
 
     def test_price_type_requires_a_price(self):
@@ -277,7 +277,7 @@ class GroupsModelTest(InitialDataTest):
                               price_type='2')
 
         self.assertQuerysetEqual(Groups.objects.all().order_by('pk'),
-                                 ['<Groups: _title>', '<Groups: price-type-none>', '<Groups: price-type-1>',
+                                 ['<Groups: title>', '<Groups: price-type-none>', '<Groups: price-type-1>',
                                   '<Groups: price-type-2>'])
 
     def test_only_product_price_is_used_set_price_type_to_none(self):
