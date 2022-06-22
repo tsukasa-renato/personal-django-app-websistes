@@ -2,7 +2,8 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-from .scenarios import check_info, colors, images, products, product_type
+from selenium.webdriver.common.by import By
+from .scenarios import check_info, colors, products, product_type
 from websites.utils.utils import money_format
 from decimal import Decimal
 
@@ -27,14 +28,14 @@ class WebsiteTest(StaticLiveServerTestCase):
 
         self.selenium.get('%s%s' % (self.live_server_url, '/checkinfo/'))
 
-        element = self.selenium.find_element_by_id('home_category')
+        element = self.selenium.find_element(By.ID, 'home_category')
         self.assertEqual(element.text, "Highlight")
 
         for x in range(6):
-            element = self.selenium.find_element_by_id(f'category-{x+1}')
+            element = self.selenium.find_element(By.ID, f'category-{x+1}')
             self.assertEqual(element.text, f'Category {x+1}')
 
-        element = self.selenium.find_element_by_id('top_navbar')
+        element = self.selenium.find_element(By.ID, 'top_navbar')
         self.assertEqual(element.text, f'Check Info\n0')
 
         contacts = (
@@ -48,7 +49,7 @@ class WebsiteTest(StaticLiveServerTestCase):
 
         for contact in contacts:
 
-            element = self.selenium.find_element_by_id(contact[0])
+            element = self.selenium.find_element(By.ID, contact[0])
             self.assertEqual(element.get_attribute("href"), contact[1])
 
         contacts = (
@@ -58,7 +59,7 @@ class WebsiteTest(StaticLiveServerTestCase):
         )
 
         for contact in contacts:
-            element = self.selenium.find_element_by_id(contact[0])
+            element = self.selenium.find_element(By.ID, contact[0])
             self.assertEqual(element.text, contact[1])
 
         colors()
@@ -75,7 +76,7 @@ class WebsiteTest(StaticLiveServerTestCase):
         )
 
         for color in colors_:
-            element = self.selenium.find_element_by_class_name(color[0])
+            element = self.selenium.find_element(By.CLASS_NAME, color[0])
             self.assertEqual(element.value_of_css_property("background-color"), color[1])
 
 
@@ -98,11 +99,11 @@ class ShowProductsTest(StaticLiveServerTestCase):
             Check categories elements' information
         """
 
-        element = self.selenium.find_element_by_id('home_category')
+        element = self.selenium.find_element(By.ID, 'home_category')
         self.assertEqual(element.text, "Highlight")
 
         for x in range(4):
-            element = self.selenium.find_element_by_id(f'category-{x + 1}')
+            element = self.selenium.find_element(By.ID, f'category-{x + 1}')
             self.assertEqual(element.text, f'Category {x + 1}')
 
     def check_products(self, category):
@@ -112,7 +113,7 @@ class ShowProductsTest(StaticLiveServerTestCase):
 
             text = f'Category {category} Product {x + 1}\n{money_format(x+1, "USD", "en_US")}'
 
-            element = self.selenium.find_element_by_id(f'category-{category}-product-{x + 1}')
+            element = self.selenium.find_element(By.ID, f'category-{category}-product-{x + 1}')
             self.assertEqual(element.text, text)
 
             y += 1
@@ -120,7 +121,7 @@ class ShowProductsTest(StaticLiveServerTestCase):
             text = f'Category {category} Promotional {x + 1}\n{money_format(x+1, "USD", "en_US")}'
             text += f' {money_format(Decimal(f"{x}.{x}"), "USD", "en_US")}' if x > 0 else ''
 
-            element = self.selenium.find_element_by_id(f'category-{category}-promotional-{x + 1}')
+            element = self.selenium.find_element(By.ID, f'category-{category}-promotional-{x + 1}')
             self.assertEqual(element.text, text)
 
             y += 1
@@ -130,7 +131,7 @@ class ShowProductsTest(StaticLiveServerTestCase):
 
             text = f'Category {category} Price type 3 {x + 1}'
 
-            element = self.selenium.find_element_by_id(f'category-{category}-price-type-3-{x + 1}')
+            element = self.selenium.find_element(By.ID, f'category-{category}-price-type-3-{x + 1}')
             self.assertEqual(element.text, text)
 
             y += 1
@@ -139,7 +140,7 @@ class ShowProductsTest(StaticLiveServerTestCase):
 
         text = f'Category {category} Price type 3 3'
 
-        element = self.selenium.find_element_by_id(f'category-{category}-price-type-3-3')
+        element = self.selenium.find_element(By.ID, f'category-{category}-price-type-3-3')
         self.assertEqual(element.text, text)
 
         y = 1
@@ -147,7 +148,7 @@ class ShowProductsTest(StaticLiveServerTestCase):
 
             text = f'Category {category} Product {x + 1}\n{money_format(x + 1, "USD", "en_US")}'
 
-            element = self.selenium.find_element_by_id(f'category-{category}-product-{x + 1}')
+            element = self.selenium.find_element(By.ID, f'category-{category}-product-{x + 1}')
             self.assertEqual(element.text, text)
 
             y += 1
@@ -155,7 +156,7 @@ class ShowProductsTest(StaticLiveServerTestCase):
             text = f'Category {category} Promotional {x + 1}\n{money_format(x + 1, "USD", "en_US")}'
             text += f' {money_format(Decimal(f"{x}.{x}"), "USD", "en_US")}' if x > 0 else ''
 
-            element = self.selenium.find_element_by_id(f'category-{category}-promotional-{x + 1}')
+            element = self.selenium.find_element(By.ID, f'category-{category}-promotional-{x + 1}')
             self.assertEqual(element.text, text)
 
             y += 1
@@ -165,7 +166,7 @@ class ShowProductsTest(StaticLiveServerTestCase):
 
             text = f'Category {category} Price type 3 {x + 1}'
 
-            element = self.selenium.find_element_by_id(f'category-{category}-price-type-3-{x + 1}')
+            element = self.selenium.find_element(By.ID, f'category-{category}-price-type-3-{x + 1}')
             self.assertEqual(element.text, text)
 
             y += 1
@@ -179,9 +180,9 @@ class ShowProductsTest(StaticLiveServerTestCase):
         self.check_categories()
         self.check_products(1)
 
-        page1 = self.selenium.find_element_by_id('page1')
-        page2 = self.selenium.find_element_by_id('page2')
-        next_page = self.selenium.find_element_by_id('next_page')
+        page1 = self.selenium.find_element(By.ID, 'page1')
+        page2 = self.selenium.find_element(By.ID, 'page2')
+        next_page = self.selenium.find_element(By.ID, 'next_page')
 
         self.assertEqual(page1.text, '1')
         self.assertEqual(page2.text, '2')
@@ -194,15 +195,15 @@ class ShowProductsTest(StaticLiveServerTestCase):
         self.check_categories()
         self.check_products_2(1)
 
-        previous_page = self.selenium.find_element_by_id('previous_page')
-        page1 = self.selenium.find_element_by_id('page1')
-        page2 = self.selenium.find_element_by_id('page2')
+        previous_page = self.selenium.find_element(By.ID, 'previous_page')
+        page1 = self.selenium.find_element(By.ID, 'page1')
+        page2 = self.selenium.find_element(By.ID, 'page2')
 
         self.assertEqual(page1.text, '1')
         self.assertEqual(page2.text, '2')
         self.assertEqual(previous_page.text, '«')
 
-        category_2 = self.selenium.find_element_by_id('category-2')
+        category_2 = self.selenium.find_element(By.ID, 'category-2')
 
         actions = ActionChains(self.selenium)
         actions.click(category_2)
@@ -212,9 +213,9 @@ class ShowProductsTest(StaticLiveServerTestCase):
 
         self.check_products(2)
 
-        page1 = self.selenium.find_element_by_id('page1')
-        page2 = self.selenium.find_element_by_id('page2')
-        next_page = self.selenium.find_element_by_id('next_page')
+        page1 = self.selenium.find_element(By.ID, 'page1')
+        page2 = self.selenium.find_element(By.ID, 'page2')
+        next_page = self.selenium.find_element(By.ID, 'next_page')
 
         self.assertEqual(page1.text, '1')
         self.assertEqual(page2.text, '2')
@@ -227,15 +228,15 @@ class ShowProductsTest(StaticLiveServerTestCase):
         self.check_categories()
         self.check_products_2(2)
 
-        previous_page = self.selenium.find_element_by_id('previous_page')
-        page1 = self.selenium.find_element_by_id('page1')
-        page2 = self.selenium.find_element_by_id('page2')
+        previous_page = self.selenium.find_element(By.ID, 'previous_page')
+        page1 = self.selenium.find_element(By.ID, 'page1')
+        page2 = self.selenium.find_element(By.ID, 'page2')
 
         self.assertEqual(page1.text, '1')
         self.assertEqual(page2.text, '2')
         self.assertEqual(previous_page.text, '«')
 
-        search = self.selenium.find_element_by_id('search')
+        search = self.selenium.find_element(By.ID, 'search')
 
         actions = ActionChains(self.selenium)
         actions.click(search)
@@ -247,7 +248,7 @@ class ShowProductsTest(StaticLiveServerTestCase):
 
             text = f'Category {x + 1} Product 1\n{money_format(1, "USD", "en_US")}'
 
-            element = self.selenium.find_element_by_id(f'category-{x + 1}-product-1')
+            element = self.selenium.find_element(By.ID, f'category-{x + 1}-product-1')
             self.assertEqual(element.text, text)
 
 
@@ -267,17 +268,17 @@ class ShowProductTest(StaticLiveServerTestCase):
 
     def check_product(self):
 
-        element = self.selenium.find_element_by_id('product_image').find_element_by_tag_name('img')
+        element = self.selenium.find_element(By.ID, 'product_image').find_element(By.TAG_NAME, 'img')
         self.assertEqual(element.get_attribute("src"), f'{self.live_server_url}/static/media/category.png')
 
-        element = self.selenium.find_element_by_id('product_title')
+        element = self.selenium.find_element(By.ID, 'product_title')
         self.assertEqual(element.text, f'Product')
 
     def check_groups(self, price_type):
 
         for x in range(3):
 
-            element = self.selenium.find_element_by_id(f'group{x + 1}')
+            element = self.selenium.find_element(By.ID, f'group{x + 1}')
             self.assertEqual(element.text, f'group {x + 1}')
 
             if price_type != '1':
@@ -289,7 +290,7 @@ class ShowProductTest(StaticLiveServerTestCase):
                 if x > 0:
                     text += '\nReadonly'
 
-            element = self.selenium.find_element_by_id(f'group{x + 1}_options')
+            element = self.selenium.find_element(By.ID, f'group{x + 1}_options')
             self.assertEqual(element.text, text)
 
     def interact_with_options(self):
@@ -297,15 +298,15 @@ class ShowProductTest(StaticLiveServerTestCase):
         for x in range(3):
 
             for y in range(3):
-                element = self.selenium.find_element_by_id(f'group{x + 1}option{y + 1}')
+                element = self.selenium.find_element(By.ID, f'group{x + 1}option{y + 1}')
                 self.click_option(element)
-                element = self.selenium.find_element_by_id(f'group{x + 1}_title')
+                element = self.selenium.find_element(By.ID, f'group{x + 1}_title')
                 self.assertEqual(element.text, f'option {y + 1}')
 
             if x > 0:
-                element = self.selenium.find_element_by_id(f'group{x + 1}readonly')
+                element = self.selenium.find_element(By.ID, f'group{x + 1}readonly')
                 self.click_option(element)
-                element = self.selenium.find_element_by_id(f'group{x + 1}_title')
+                element = self.selenium.find_element(By.ID, f'group{x + 1}_title')
                 self.assertEqual(element.text, f'Readonly')
 
     def click_option(self, element):
@@ -323,7 +324,7 @@ class ShowProductTest(StaticLiveServerTestCase):
 
         self.selenium.get('%s%s' % (self.live_server_url, '/products/'))
 
-        element = self.selenium.find_element_by_id(f'product')
+        element = self.selenium.find_element(By.ID, f'product')
 
         actions = ActionChains(self.selenium)
         actions.click(element)
@@ -334,14 +335,14 @@ class ShowProductTest(StaticLiveServerTestCase):
 
         total = '$30,000.00'
 
-        element = self.selenium.find_element_by_id('product_total')
+        element = self.selenium.find_element(By.ID, 'product_total')
         self.assertEqual(element.text, total)
 
         self.interact_with_options()
 
         total = '$30,000.00'
 
-        element = self.selenium.find_element_by_id('product_total')
+        element = self.selenium.find_element(By.ID, 'product_total')
         self.assertEqual(element.text, total)
 
     def test_product_2(self):
@@ -352,7 +353,7 @@ class ShowProductTest(StaticLiveServerTestCase):
 
         self.selenium.get('%s%s' % (self.live_server_url, '/products/'))
 
-        element = self.selenium.find_element_by_id(f'product')
+        element = self.selenium.find_element(By.ID, f'product')
 
         actions = ActionChains(self.selenium)
         actions.click(element)
@@ -363,14 +364,14 @@ class ShowProductTest(StaticLiveServerTestCase):
 
         total = '$32,200.00'
 
-        element = self.selenium.find_element_by_id('product_total')
+        element = self.selenium.find_element(By.ID, 'product_total')
         self.assertEqual(element.text, total)
 
         self.interact_with_options()
 
         total = '$34,200.00'
 
-        element = self.selenium.find_element_by_id('product_total')
+        element = self.selenium.find_element(By.ID, 'product_total')
         self.assertEqual(element.text, total)
 
     def test_product_3(self):
@@ -381,7 +382,7 @@ class ShowProductTest(StaticLiveServerTestCase):
 
         self.selenium.get('%s%s' % (self.live_server_url, '/products/'))
 
-        element = self.selenium.find_element_by_id(f'product')
+        element = self.selenium.find_element(By.ID, f'product')
 
         actions = ActionChains(self.selenium)
         actions.click(element)
@@ -392,12 +393,12 @@ class ShowProductTest(StaticLiveServerTestCase):
 
         total = '$2,200.00'
 
-        element = self.selenium.find_element_by_id('product_total')
+        element = self.selenium.find_element(By.ID, 'product_total')
         self.assertEqual(element.text, total)
 
         self.interact_with_options()
 
         total = '$4,200.00'
 
-        element = self.selenium.find_element_by_id('product_total')
+        element = self.selenium.find_element(By.ID, 'product_total')
         self.assertEqual(element.text, total)
