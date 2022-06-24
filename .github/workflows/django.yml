@@ -10,8 +10,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    environment:
+      name: env
     strategy:
-      max-parallel: 4
       matrix:
         python-version: [3.9]
 
