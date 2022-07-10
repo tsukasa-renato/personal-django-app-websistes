@@ -16,8 +16,13 @@ class WebsiteTest(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        # options = webdriver.ChromeOptions()
-        # options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        options.add_argument('--no-sandbox')
+        options.add_argument('--window-size=1420,1080')
+        options.add_argument('--headless')
+        options.add_argument('--disable-gpu')
+
         cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         cls.selenium.implicitly_wait(30)
 
@@ -90,8 +95,13 @@ class ShowProductsTest(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        # options = webdriver.ChromeOptions()
-        # options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        options.add_argument('--no-sandbox')
+        options.add_argument('--window-size=1420,1080')
+        options.add_argument('--headless')
+        options.add_argument('--disable-gpu')
+
         cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         cls.selenium.implicitly_wait(120)
 
@@ -264,8 +274,13 @@ class ShowProductTest(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        # options = webdriver.ChromeOptions()
-        # options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        options.add_argument('--no-sandbox')
+        options.add_argument('--window-size=1420,1080')
+        options.add_argument('--headless')
+        options.add_argument('--disable-gpu')
+
         cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         cls.selenium.implicitly_wait(120)
 
