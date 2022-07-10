@@ -40,15 +40,9 @@ python manage.py test websites.tests.test_model
 python manage.py test websites.tests.test_view
 ```
 
-### Config selenium
-Config the selenium to execute tests using selenium. You need to download browser's web driver.
-https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/
-Check your browser version, then extract the web driver to 
-websites/tests/Webdriver directory.
-The websites/tests/test_selenium.py file specifies the url of the web driver, it expects the Chrome web driver, 
-if using another browser change line 16 of the test_selenium.py.
-
-With the selenium configured run the following command:
+### Selenium options
+Added options to fix an issue on PCs using Windows OS and Chrome browser, if you don't use it, consider remove this options.
+To execute the tests with selenium use the code below:
 
 ```
 python manage.py test websites.tests.test_selenium

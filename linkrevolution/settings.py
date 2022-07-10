@@ -90,8 +90,6 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
-
 USE_TZ = True
 
 
@@ -99,7 +97,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-ALLOWED_HOSTS = ['127.0.0.1', 'testserver', 'localhost', 'personal-django-web-app.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'testserver', 'localhost']
 
 INTERNAL_IPS = [
     # ...
@@ -114,4 +112,4 @@ REST_FRAMEWORK = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())

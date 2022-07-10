@@ -1,11 +1,13 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 from .scenarios import check_info, colors, products, product_type
 from websites.utils.utils import money_format
 from decimal import Decimal
+from selenium import webdriver
 
 
 class WebsiteTest(StaticLiveServerTestCase):
@@ -14,7 +16,9 @@ class WebsiteTest(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.selenium = WebDriver('websites/tests/Webdriver/chromedriver')  # Change this line if using another browser
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
         cls.selenium.implicitly_wait(30)
 
     @classmethod
@@ -86,7 +90,9 @@ class ShowProductsTest(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.selenium = WebDriver('websites/tests/Webdriver/chromedriver')
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
         cls.selenium.implicitly_wait(120)
 
     @classmethod
@@ -258,7 +264,9 @@ class ShowProductTest(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.selenium = WebDriver('websites/tests/Webdriver/chromedriver')
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
         cls.selenium.implicitly_wait(120)
 
     @classmethod
