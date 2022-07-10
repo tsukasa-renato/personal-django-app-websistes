@@ -32,3 +32,6 @@ jobs:
     - name: Test View
       run: |
         python manage.py test websites.tests.test_view
+    - name: Test Selenium
+      run: |
+        python manage.py test websites.tests.test_selenium
