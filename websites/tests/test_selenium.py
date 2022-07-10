@@ -23,8 +23,8 @@ class WebsiteTest(StaticLiveServerTestCase):
         options.add_argument('--headless')
         options.add_argument('--disable-gpu')
 
-        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-        cls.selenium.implicitly_wait(30)
+        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        cls.selenium.implicitly_wait(120)
 
     @classmethod
     def tearDownClass(cls):
@@ -102,7 +102,7 @@ class ShowProductsTest(StaticLiveServerTestCase):
         options.add_argument('--headless')
         options.add_argument('--disable-gpu')
 
-        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
         cls.selenium.implicitly_wait(120)
 
     @classmethod
@@ -281,7 +281,7 @@ class ShowProductTest(StaticLiveServerTestCase):
         options.add_argument('--headless')
         options.add_argument('--disable-gpu')
 
-        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
         cls.selenium.implicitly_wait(120)
 
     @classmethod
