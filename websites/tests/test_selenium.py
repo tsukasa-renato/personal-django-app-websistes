@@ -16,9 +16,9 @@ class WebsiteTest(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        options = webdriver.ChromeOptions()
-        options.add_experimental_option('excludeSwitches', ['enable-logging'])
-        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        # options = webdriver.ChromeOptions()
+        # options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         cls.selenium.implicitly_wait(30)
 
     @classmethod
@@ -90,9 +90,9 @@ class ShowProductsTest(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        options = webdriver.ChromeOptions()
-        options.add_experimental_option('excludeSwitches', ['enable-logging'])
-        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        # options = webdriver.ChromeOptions()
+        # options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         cls.selenium.implicitly_wait(120)
 
     @classmethod
@@ -264,9 +264,9 @@ class ShowProductTest(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        options = webdriver.ChromeOptions()
-        options.add_experimental_option('excludeSwitches', ['enable-logging'])
-        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        # options = webdriver.ChromeOptions()
+        # options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         cls.selenium.implicitly_wait(120)
 
     @classmethod
