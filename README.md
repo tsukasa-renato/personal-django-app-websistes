@@ -41,7 +41,7 @@ python manage.py test websites.tests.test_view
 ```
 
 ### Selenium options
-Added options to fix an issue on PCs using Windows OS and Chrome browser, if you don't use it, consider remove this options.
+Added options to fix an issue on PCs using Windows OS and Chrome browser, and fix an issue on github actions.
 To execute the tests with selenium use the code below:
 
 ```
