@@ -39,6 +39,9 @@ python manage.py test websites.tests.test_model
 ```
 python manage.py test websites.tests.test_view
 ```
+```
+python manage.py test websites.tests.test_apis
+```
 
 ### Selenium options
 Added options to fix an issue on PCs using Windows OS and Chrome browser, and fix an issue on github actions.
