@@ -62,6 +62,13 @@ python manage.py runserver
 To register a website, access the admin page using the url ```/admin/```, access the websites model and register an 
 url, and a title, click in the save, now, you can access the website using the url registered.
 
+### Running with DEBUG = False
+Before running django, if DEBUG = FALSE, run the following command in the terminal:
+
+```
+python manage.py collectstatic
+```
+
 # About
 This project was proposed just to explore the Django tool, and just as an effort to create a flexible business logic that adapts to the complexity of the product and the local.
 In the case of the product, for example, the project considers a product as a result of a set of customizable options, each product can have many groups and each group can have many options.
