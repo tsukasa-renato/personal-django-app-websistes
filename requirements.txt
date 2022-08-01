@@ -10,3 +10,5 @@ selenium==4.2.0
 django-environ==0.9
 webdriver-manager==3.8.0
 whitenoise==6.2.0
+boto3==1.24.34
+django-storages==1.12.3
