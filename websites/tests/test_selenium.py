@@ -1,11 +1,13 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 from .scenarios import check_info, colors, products, product_type
 from websites.utils.utils import money_format
 from decimal import Decimal
+from selenium import webdriver
 
 
 class WebsiteTest(StaticLiveServerTestCase):
@@ -14,8 +16,15 @@ class WebsiteTest(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.selenium = WebDriver('websites/tests/Webdriver/chromedriver')  # Change this line if using another browser
-        cls.selenium.implicitly_wait(30)
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        options.add_argument('--no-sandbox')
+        options.add_argument('--window-size=1420,1080')
+        options.add_argument('--headless')
+        options.add_argument('--disable-gpu')
+
+        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        cls.selenium.implicitly_wait(120)
 
     @classmethod
     def tearDownClass(cls):
@@ -86,7 +95,14 @@ class ShowProductsTest(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.selenium = WebDriver('websites/tests/Webdriver/chromedriver')
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        options.add_argument('--no-sandbox')
+        options.add_argument('--window-size=1420,1080')
+        options.add_argument('--headless')
+        options.add_argument('--disable-gpu')
+
+        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
         cls.selenium.implicitly_wait(120)
 
     @classmethod
@@ -258,7 +274,14 @@ class ShowProductTest(StaticLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.selenium = WebDriver('websites/tests/Webdriver/chromedriver')
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        options.add_argument('--no-sandbox')
+        options.add_argument('--window-size=1420,1080')
+        options.add_argument('--headless')
+        options.add_argument('--disable-gpu')
+
+        cls.selenium = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
         cls.selenium.implicitly_wait(120)
 
     @classmethod

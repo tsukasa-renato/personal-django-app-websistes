@@ -135,7 +135,7 @@
             {% endif %}
 
             {% if option.description %}
-                {{ option.slug|remove_dash }}_desc = "{{ option.description }}"
+                {{ option.slug|remove_dash }}_desc = `{{ option.description|remove_back_quote }}`
             {% else %}
                 {{ option.slug|remove_dash }}_desc = ""
             {% endif %}

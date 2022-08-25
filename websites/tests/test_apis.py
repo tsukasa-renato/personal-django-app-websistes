@@ -16,7 +16,7 @@ class APIsTest(APITestCase):
 
         User.objects.create_user(**self.credentials)
 
-        self.client = APIClient()  # For windows users
+        self.client = APIClient()  # For Windows users
 
         self.client.login(**self.credentials)
 

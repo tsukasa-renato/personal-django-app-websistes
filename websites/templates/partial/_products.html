@@ -10,7 +10,7 @@
     <div class="col-sm">
 
         <a href="{% url 'websites:product' url=website.url selected_product=product.slug %}"
-           class="card border-0 title" style="max-width:400px;">
+           class="card border-0 title" style="width:300px;">
 
             {% if product.images %}
             <img class="card-img-top" src="{{ product.images.url }}" alt="{{ product.images.name }}"

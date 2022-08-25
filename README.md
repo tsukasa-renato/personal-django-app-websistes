@@ -39,16 +39,13 @@ python manage.py test websites.tests.test_model
 ```
 python manage.py test websites.tests.test_view
 ```
+```
+python manage.py test websites.tests.test_apis
+```
 
-### Config selenium
-Config the selenium to execute tests using selenium. You need to download browser's web driver.
-https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/
-Check your browser version, then extract the web driver to 
-websites/tests/Webdriver directory.
-The websites/tests/test_selenium.py file specifies the url of the web driver, it expects the Chrome web driver, 
-if using another browser change line 16 of the test_selenium.py.
-
-With the selenium configured run the following command:
+### Selenium options
+Added options to fix an issue on PCs using Windows OS and Chrome browser, and fix an issue on github actions.
+To execute the tests with selenium use the code below:
 
 ```
 python manage.py test websites.tests.test_selenium
@@ -64,6 +61,13 @@ python manage.py runserver
 ### Register a website
 To register a website, access the admin page using the url ```/admin/```, access the websites model and register an 
 url, and a title, click in the save, now, you can access the website using the url registered.
+
+### Running with DEBUG = False
+Before running django, if DEBUG = FALSE, run the following command in the terminal:
+
+```
+python manage.py collectstatic
+```
 
 # About
 This project was proposed just to explore the Django tool, and just as an effort to create a flexible business logic that adapts to the complexity of the product and the local.

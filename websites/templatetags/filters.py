@@ -33,3 +33,8 @@ def remove_dash(text):
     text = str(text)
     return text.replace('-', '')
 
+
+@register.filter
+def remove_back_quote(text):
+    text = str(text)
+    return text.replace('`', '')
