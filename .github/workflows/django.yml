@@ -43,4 +43,4 @@ jobs:
         python manage.py test websites.tests.test_selenium
     - name: API Test
       run: |
-        python manage.py test websites.tests.test_apis
+        python manage.py test websites.tests.test_api

@@ -40,7 +40,7 @@ python manage.py test websites.tests.test_model
 python manage.py test websites.tests.test_view
 ```
 ```
-python manage.py test websites.tests.test_apis
+python manage.py test websites.tests.test_api
 ```
 
 ### Selenium options

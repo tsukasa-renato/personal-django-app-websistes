@@ -14,11 +14,11 @@ class APIsTest(APITestCase):
             'password': 'PASSsecret123'
         }
 
-        User.objects.create_user(**self.credentials)
+        user = User.objects.create_user(**self.credentials)
 
         self.client = APIClient()  # For Windows users
 
-        self.client.login(**self.credentials)
+        self.client.force_authenticate(user=user)
 
     def check_information(self, url, data, keys):
         """
