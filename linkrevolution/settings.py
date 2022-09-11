@@ -64,8 +64,16 @@ WSGI_APPLICATION = 'linkrevolution.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('NAME'),
+        'HOST': env('HOST'),
+        'USER': env('USER'),
+        'PASSWORD': env('PASSWORD'),
+        'OPTIONS': {
+            'sql_mode': 'STRICT_TRANS_TABLES',
+            # https://docs.djangoproject.com/en/4.0/ref/databases/#mysql-sql-mode
+        }
+
     }
 }
 
